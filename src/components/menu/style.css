@@ -1,0 +1,34 @@
+.Menu {
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+
+.Menu-item {
+    display: block;
+    align-items: flex-end;
+    padding: 2px 4px 3px 2px;
+    margin: 0 2px;
+}
+a{
+    text-align: center;
+}
+.Menu-wrapper{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.Menu-item:first-child {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.Menu-item:last-child {
+    margin-right: 0;
+    padding-right: 0;
+}
