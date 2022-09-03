@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ylabio/react-webinar-2.git"
+    "url": "git+https://github.com/saha23412/BasketAuth.git"
   },
   "keywords": [
     "react",
@@ -23,10 +23,8 @@
     "@babel/preset-env": "^7.18.9",
     "@babel/preset-react": "^7.18.6",
     "@bem-react/classname": "^1.5.12",
-<<<<<<< HEAD
-=======
+
     "animate-presence": "^0.2.1",
->>>>>>> lecture5
     "babel-loader": "^8.2.5",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
@@ -36,11 +34,8 @@
     "lodash.throttle": "^4.1.1",
     "mini-css-extract-plugin": "^2.6.1",
     "plural-ru": "^2.0.2",
-<<<<<<< HEAD
-=======
     "prop-types": "^15.8.1",
     "qs": "^6.11.0",
->>>>>>> lecture5
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^7.2.6",
