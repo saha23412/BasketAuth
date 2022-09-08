@@ -24,7 +24,6 @@ function Basket() {
   const callbacks = {
     // Закрытие любой модалки
     closeModal: useCallback(() => {
-      //store.get('modals').close()
       storeRedux.dispatch(actionsModals.close());
     }, []),
     // Удаление из корзины

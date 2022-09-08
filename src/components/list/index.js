@@ -18,11 +18,11 @@ function List(props) {
           initial={{scale:0}}
           animate={{
             scale:1,
-            transition:{delay:0.7,type:'just'}
+            transition:{delay:0.4,type:'just'}
           }}
           exit={{
             opacity:0,
-            transition:{delay:0.5}
+            transition:{delay:0.4}
           }}
           layout
           >

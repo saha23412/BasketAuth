@@ -1,40 +1,28 @@
 import StateModule from "../module";
 
-/**
- * Состояние профиля
- */
-class ProfileState extends StateModule{
 
-  /**
-   * Начальное состояние
-   * @return {Object}
-   */
+class ProfileState extends StateModule {
+
+
   initState() {
     return {
       data: {},
       waiting: false
     };
   }
-
-  /**
-   * Загрузка профиля
-   */
-  async load(){
-    // Сброс текущего товара и установка признака ожидания загрузки
+  async load() {
     this.setState({
       waiting: true,
       data: {}
     }, 'Ожидание загрузки профиля');
 
     try {
-      const json = await this.services.api.request({url: '/api/v1/users/self'});
-      // Товар загружен успешно
+      const json = await this.services.api.request({ url: '/api/v1/users/self' });
       this.setState({
         data: json.result,
         waiting: false
       }, 'Профиль загружен');
-    } catch (e){
-      // Ошибка при загрузке
+    } catch (e) {
       this.setState({
         data: {},
         waiting: false

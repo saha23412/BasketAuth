@@ -1,9 +1,8 @@
-// Начальное состояние для управления модалками
+
 const initialState = {
   name: ''
 }
 
-// Обработчик действий в redux
 export default function(state = initialState, action){
   switch (action.type) {
     case "modal/open":
@@ -11,7 +10,6 @@ export default function(state = initialState, action){
     case "modal/close":
       return { ...state, name: null };
     default:
-      // Нет изменений
       return state;
   }
 }

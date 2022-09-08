@@ -20,12 +20,6 @@ class SessionState extends StateModule {
     };
   }
 
-  /**
-   * Авторизация (вход)
-   * @param data
-   * @param onSuccess
-   * @returns {Promise<void>}
-   */
   async signIn(data, onSuccess) {
     this.setState(this.initState(), 'Авторизация (начало)');
     try {
@@ -61,34 +55,26 @@ class SessionState extends StateModule {
     }
   }
 
-  /**
-   * Отмена авторизации (выход)
-   * @returns {Promise<void>}
-   */
+
   async signOut() {
     try {
-      await this.services.api.request({method: 'DELETE', url: '/api/v1/users/sign'});
+      await this.services.api.request({ method: 'DELETE', url: '/api/v1/users/sign' });
       window.localStorage.removeItem('token');
 
       this.services.api.setHeader(this.config.tokenHeader, null);
     } catch (error) {
       console.error(error);
     }
-    this.setState({...this.initState(), waiting: false});
+    this.setState({ ...this.initState(), waiting: false });
   }
 
-  /**
-   * По токену восстановление сессии
-   * @return {Promise<void>}
-   */
   async remind() {
     const token = localStorage.getItem('token');
     if (token) {
-      // Устанавливаем токен в АПИ
       this.services.api.setHeader(this.config.tokenHeader, token);
-      const json = await this.services.api.request({url: '/api/v1/users/self'});
+      const json = await this.services.api.request({ url: '/api/v1/users/self' });
       if (json.error) {
-        // Удаляем плохой токен
+       
         window.localStorage.removeItem('token');
         this.services.api.setHeader(this.config.tokenHeader, null);
       } else {

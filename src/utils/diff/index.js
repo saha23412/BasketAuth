@@ -1,11 +1,4 @@
 import isPlainObject from '../is-plain-object';
-
-/**
- * Вовзращает иммутабельный объект, в котором не будет совпадений со вторым объектом
- * @param object1 {Object} Исходный обеъект
- * @param object2 {Object} Объект-маска
- * @returns {undefined|*}
- */
 export default function diff(object1, object2) {
   if (isPlainObject(object1) && isPlainObject(object2)) {
     const result = {};

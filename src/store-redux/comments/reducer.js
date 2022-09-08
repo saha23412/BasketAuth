@@ -14,7 +14,7 @@ const initialState = {
         return { ...state, data: action.payload.data, waiting: false};
   
       case "comments/load-error":
-        return { ...state, data: {}, waiting: false}; //@todo текст ошибки сохранить?
+        return { ...state, data: {}, waiting: false};
         case 'comments/send-success':
           return { ...state, data: [...state.data, action.payload.data], waiting: false };
       default:

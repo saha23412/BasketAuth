@@ -14,10 +14,9 @@ export default function reducer(state = initialState, action) {
       return { ...state, data: action.payload.data, waiting: false };
 
     case "article/load-error":
-      return { ...state, data: {}, waiting: false }; //@todo текст ошибки сохранить?
+      return { ...state, data: {}, waiting: false };
 
     default:
-      // Нет изменений
       return state;
   }
 }

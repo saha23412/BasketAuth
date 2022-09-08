@@ -16,7 +16,6 @@ import actionsComments from '../../store-redux/comments/action'
 import CommentsWrapper from "../../components/comments/commentsLogic";
 function Article() {
   const store = useStore();
-  // Параметры из пути /articles/:id
   const params = useParams();
   const storeRedux = useStoreRedux();
   const select = useSelectorRedux(state => ({
@@ -24,12 +23,10 @@ function Article() {
     waiting: state.article.waiting,
   }), shallowEqual);
   useInit(async () => {
-    //await store.get('article').load(params.id);
     storeRedux.dispatch(actionsArticle.load(params.id));
   }, [params.id]);
   const { t } = useTranslate();
   const callbacks = {
-    // Добавление в корзину
     addToBasket: useCallback(_id => store.get('basket').addToBasket(_id), []),
   };
 

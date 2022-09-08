@@ -2,15 +2,8 @@ import StateModule from "../module";
 import qs from '../../utils/search-params';
 import diff from "../../utils/diff";
 
-/**
- * Состояние каталога
- */
-class CatalogState extends StateModule {
 
-  /**
-   * Начальное состояние
-   * @return {Object}
-   */
+class CatalogState extends StateModule {
   initState() {
     return {
       items: [],
@@ -26,14 +19,7 @@ class CatalogState extends StateModule {
     };
   }
 
-  /**
-   * Инициализация параметров.
-   * Восстановление из query string адреса
-   * @param params
-   * @return {Promise<void>}
-   */
   async initParams(params = {}) {
-    // Параметры из URl. Их нужно валидирвать, приводить типы и брать толкьо нужные
     const urlParams = qs.parse(window.location.search);
     let validParams = {};
     if (urlParams.page) validParams.page = Number(urlParams.page) || 1;
@@ -42,34 +28,20 @@ class CatalogState extends StateModule {
     if (urlParams.query) validParams.query = urlParams.query;
     if (urlParams.category) validParams.category = urlParams.category;
 
-    // Итоговые параметры из начальных, из URL и из переданных явно
-    const newParams = {...this.initState().params, ...validParams, ...params};
-    // Установка параметров и подгрузка данных
+    const newParams = { ...this.initState().params, ...validParams, ...params };
     await this.setParams(newParams, true);
   }
 
-  /**
-   * Сброс параметров к начальным
-   * @param params
-   * @return {Promise<void>}
-   */
+
   async resetParams(params = {}) {
-    // Итоговые параметры из начальных, из URL и из переданных явно
-    const newParams = {...this.initState().params, ...params};
-    // Установк параметров и подгрузка данных
+    const newParams = { ...this.initState().params, ...params };
     await this.setParams(newParams);
   }
 
-  /**
-   * Устанвока параметров и загрузка списка товаров
-   * @param params
-   * @param historyReplace {Boolean} Заменить адрес (true) или сделаит новую запис в истории браузера (false)
-   * @returns {Promise<void>}
-   */
-  async setParams(params = {}, historyReplace = false) {
-    const newParams = {...this.getState().params, ...params};
 
-    // Установка новых параметров и признака загрузки
+  async setParams(params = {}, historyReplace = false) {
+    const newParams = { ...this.getState().params, ...params };
+
     this.setState({
       ...this.getState(),
       params: newParams,
@@ -82,15 +54,15 @@ class CatalogState extends StateModule {
       fields: 'items(*),count',
       sort: newParams.sort,
       search: {
-        query: newParams.query, // search[query]=text
-        category: newParams.category  // -> search[category]=id
+        query: newParams.query,
+        category: newParams.category
       }
-    }, {skip: 0, search: {query: '', category: ''}});
+    }, { skip: 0, search: { query: '', category: '' } });
 
-    // ?search[query]=text&search[category]=id
-    const json = await this.services.api.request({url: `/api/v1/articles${qs.stringify(apiParams)}`});
 
-    // Установка полученных данных и сброс признака загрузки
+    const json = await this.services.api.request({ url: `/api/v1/articles${qs.stringify(apiParams)}` });
+
+
     this.setState({
       ...this.getState(),
       items: json.result.items,
