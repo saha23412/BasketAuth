@@ -4,9 +4,6 @@ import { useEffect } from 'react';
 export default function useInit(callback, depends = [], options = {backForward: false}) {
     useEffect(() => {
       callback(false);
-      // Если в истории браузера меняются только search-параметры, то react-router не оповестит
-      // компонент об изменениях, поэтому хук можно явно подписать на событие изменения истории
-      // браузера (если нужно отреагировать на изменения search-параметров при переходе по истории)
       if (options.backForward) {
         window.addEventListener('popstate', callback);
         return () => {
