@@ -15,3 +15,5 @@ v16.16.0
 ![Image alt](https://github.com/saha23412/imgproj/raw/main/basket_auth4.jpg)  
 На сайте минимальная верстка, больше делал упор на функционал.
 На сайте реализованы сортировка ,живой поиск и пагинация.
+## Технологии
+React,react-router-dom,Redux.
